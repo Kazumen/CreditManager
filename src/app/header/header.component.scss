@@ -1,0 +1,44 @@
+mat-toolbar {
+  border-bottom: 2px solid lightgray;
+  font-size: 40px;
+  background: #f1f1f1;
+  position: relative;
+  height: 10%;
+}
+
+.title {
+  letter-spacing: 1.3px;
+  position: absolute;
+  top: 30%;
+  left: 20px;
+}
+
+.first {
+  font-weight: bold;
+  color: limegreen;
+}
+
+button {
+  padding: 0 20px 0 20px;
+  height: 100%;
+  border-radius: 0;
+}
+
+.button-text {
+  color: limegreen;
+  font-size: 25px;
+}
+
+.new-button {
+  font-size: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: limegreen;
+  height: 100%;
+  border-radius: 0;
+}
+
+.new-button-text {
+  color: #f1f1f1;
+}

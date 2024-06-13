@@ -1,1 +1,15 @@
-<p>header works!</p>
+<mat-toolbar fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+  <span class="title">
+    <span class="first">Credit</span>
+    <span class="second">Manager</span>
+  </span>
+  <button class="router-button" mat-button routerLink="/credits">
+    <span class="button-text" fxLayoutAlign="center center">Кредити</span>
+  </button>
+  <button class="router-button" mat-button routerLink="/banks">
+    <span class="button-text" fxLayoutAlign="center center">Банки</span>
+  </button>
+  <button class="new-button" mat-button>
+    <span class="new-button-text">Додати</span>
+  </button>
+</mat-toolbar>
