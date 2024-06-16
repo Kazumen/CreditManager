@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="bankForm" fxLayout="column" fxLayoutGap="20px">
+        <mat-form-field appearance="fill">
+            <mat-label>Назва</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="bankForm.get('name')?.errors?.['required']">
+                Назва є обов'язковою.
+            </mat-error>
+            <mat-error *ngIf="bankForm.get('name')?.errors?.['minlength']">
+                Назва повинна бути не менше 3 символів.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Власник</mat-label>
+            <input matInput formControlName="owner">
+            <mat-error *ngIf="bankForm.get('owner')?.errors?.['required']">
+                Власник є обов'язковим.
+            </mat-error>
+            <mat-error *ngIf="bankForm.get('owner')?.errors?.['minlength']">
+                Власник повинен мати не менше 3 символів.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Адреса</mat-label>
+            <input matInput formControlName="address">
+            <mat-error *ngIf="bankForm.get('address')?.errors?.['required']">
+                Адреса є обов'язковою.
+            </mat-error>
+            <mat-error *ngIf="bankForm.get('address')?.errors?.['minlength']">
+                Адреса повинна мати не менше 3 символів.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Вебсайт</mat-label>
+            <input matInput formControlName="website">
+            <mat-error *ngIf="bankForm.get('website')?.errors?.['required']">
+                Вебсайт є обов'язковим.
+            </mat-error>
+            <mat-error *ngIf="bankForm.get('website')?.errors?.['minlength']">
+                Вебсайт повинен мати не менше 3 символів.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Ліміт</mat-label>
+            <input matInput formControlName="maxLimit" type="number">
+            <mat-error *ngIf="bankForm.get('maxLimit')?.errors?.['required']">
+                Ліміт є обов'язковим.
+            </mat-error>
+            <mat-error *ngIf="bankForm.get('maxLimit')?.errors?.['min']">
+                Ліміт повинен бути більше 0.
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Скасувати</button>
+    <button mat-button [disabled]="bankForm.invalid" type="button" (click)="onSubmit()">Зберегти</button>
+</div>

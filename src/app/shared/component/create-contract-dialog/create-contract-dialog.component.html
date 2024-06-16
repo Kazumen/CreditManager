@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Створити контракт</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" fxLayout="column" fxLayoutAlign="space-between " fxLayoutGap="10px">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Банк</mat-label>
+            <mat-select formControlName="bank" required>
+                <mat-option *ngFor="let bank of banks" [value]="bank.id">{{bank.name}}</mat-option>
+            </mat-select>
+            <mat-hint align="start" *ngIf="currentLimit">
+                Ліміт: {{currentLimit | currency: 'UAH':'symbol-narrow'}}
+            </mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width" *ngIf="form.get('bank')?.value">
+            <mat-label>Кредит</mat-label>
+            <mat-select formControlName="credit">
+                <mat-option *ngFor="let credit of credits" [value]="credit.id">{{ credit.name }}</mat-option>
+            </mat-select>
+            <mat-hint align="start" *ngIf="maxSum">
+                Сума кредиту: {{maxSum | currency: 'UAH':'symbol-narrow'}}
+            </mat-hint>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="close()">Скасувати</button>
+    <button mat-button (click)="submit()" [disabled]="!form.valid ||  currentLimit<maxSum">Підтвердити</button>
+</div>

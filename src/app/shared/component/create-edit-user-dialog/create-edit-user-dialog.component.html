@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="userForm" fxLayout="column" fxLayoutGap="20px">
+        <mat-form-field appearance="fill">
+            <mat-label>Ім'я</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="userForm.get('name')?.errors?.['required']">
+                Ім'я є обов'язковим.
+            </mat-error>
+            <mat-error *ngIf="userForm.get('name')?.errors?.['minlength']">
+                Ім'я повинно бути не менше 4 символів.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Прізвище</mat-label>
+            <input matInput formControlName="surname">
+            <mat-error *ngIf="userForm.get('surname')?.errors?.['required']">
+                Прізвище є обов'язковим.
+            </mat-error>
+            <mat-error *ngIf="userForm.get('surname')?.errors?.['minlength']">
+                Прізвище повинно бути не менше 4 символів.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Пошта</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="userForm.get('email')?.errors?.['required']">
+                Пошта є обов'язковою.
+            </mat-error>
+            <mat-error *ngIf="userForm.get('email')?.errors?.['email']">
+                Невірний формат пошти.
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Скасувати</button>
+    <button mat-button [disabled]="userForm.invalid" type="button" (click)="onSubmit()">Зберегти</button>
+</div>

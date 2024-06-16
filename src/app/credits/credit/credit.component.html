@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutAlign="start center" class="user-profile-container">
+    <mat-card class="user-profile-card" *ngIf="creditService.credit$ | async as credit" fxLayout="column"
+              fxLayoutAlign="center">
+        <mat-card-header fxLayout="column" fxLayoutAlign="center">
+            <mat-card-title>{{ credit.name }}</mat-card-title>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-card-subtitle>Сума кредиту: {{ credit.maxSum | currency: 'UAH':'symbol-narrow' }}</mat-card-subtitle>
+                <mat-card-subtitle>Комісія: {{ credit.commission }}%</mat-card-subtitle>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-card-subtitle>Термін: {{ credit.contractTerm }} міс.</mat-card-subtitle>
+                <div *ngIf="bankService.bank$ | async as bank">
+                    <mat-card-subtitle>Банк: <a href="/banks/{{bank.id}}">{{ bank.name }}</a></mat-card-subtitle>
+                </div>
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="user-actions">
+                <button mat-raised-button color="primary" (click)="editCredit()">Редагувати кредит</button>
+                <button mat-raised-button color="warn" (click)="deleteCredit()">Видалити кредит</button>
+            </div>
+            <div class="credits-container">
+                <div fxLayout="row" fxLayoutAlign="center center" class="credits-header">
+                    <button mat-raised-button color="accent" (click)="takeCredit()">Узяти цей кредит користувачу
+                    </button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

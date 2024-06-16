@@ -1,0 +1,50 @@
+<div class="table-container">
+    <div fxLayout="row" fxLayoutAlign=" center">
+        <mat-form-field appearance="fill" fxFlex>
+            <mat-label>Пошук</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Пошук користувачів">
+        </mat-form-field>
+        <div class="button-container" fxFlexOffset="5">
+            <button mat-raised-button color="primary" (click)="openAddUserDialog()">Добавити нового користувача</button>
+        </div>
+    </div>
+    <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort class="mat-elevation-z8">
+        <!-- Define columns as needed -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ім'я</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="surname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Прізвище</th>
+            <td mat-cell *matCellDef="let element">{{ element.surname }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Пошта</th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="contracts">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Кількість кредитів</th>
+            <td mat-cell *matCellDef="let element">{{ element.contracts.length }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row"
+            (click)="goToUser(row.id)"></tr>
+    </table>
+
+    <mat-paginator
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            (page)="handlePageEvent($event)"
+            [pageSize]="userService.pageSize$ | async"
+            [length]="userService.totalElements$ | async"
+            [pageIndex]="userService.currentPage$ | async">
+    </mat-paginator>
+</div>

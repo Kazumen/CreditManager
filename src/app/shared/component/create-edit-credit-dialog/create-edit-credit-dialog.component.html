@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="creditForm" fxLayout="column" fxLayoutGap="20px">
+        <mat-form-field appearance="fill">
+            <mat-label>Назва</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="creditForm.get('name')?.errors?.['required']">
+                Назва є обов'язковою.
+            </mat-error>
+            <mat-error *ngIf="creditForm.get('name')?.errors?.['minlength']">
+                Назва повинна бути не менше 3 символів.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Сума кредиту</mat-label>
+            <input matInput formControlName="maxSum" class="right-align" type="number">
+            <span matTextPrefix>₴&nbsp;</span>
+            <mat-error *ngIf="creditForm.get('maxSum')?.errors?.['required']">
+                Сума кредиту є обов'язковою.
+            </mat-error>
+            <mat-error *ngIf="creditForm.get('maxSum')?.errors?.['min']">
+                Сума повинна бути більше 0.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Комісія</mat-label>
+            <input matInput formControlName="commission" class="right-align" type="number">
+            <span matTextPrefix>%&nbsp;</span>
+            <mat-error *ngIf="creditForm.get('commission')?.errors?.['required']">
+                Комісія є обов'язковою.
+            </mat-error>
+            <mat-error *ngIf="creditForm.get('commission')?.errors?.['min']">
+                Комісія повинна бути більше 0.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Термін</mat-label>
+            <input matInput formControlName="contractTerm" class="right-align" type="number">
+            <span matTextPrefix>міс.</span>
+            <mat-error *ngIf="creditForm.get('contractTerm')?.errors?.['required']">
+                Термін є обов'язковим.
+            </mat-error>
+            <mat-error *ngIf="creditForm.get('contractTerm')?.errors?.['minlength']">
+                Термін повинен бути більше 0.
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Скасувати</button>
+    <button mat-button [disabled]="creditForm.invalid" type="button" (click)="onSubmit()">Зберегти</button>
+</div>

@@ -1,12 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {BanksComponent} from "./banks/banks.component";
-import {CreditsComponent} from "./credits/credits.component";
 
 const routes: Routes = [
-  {path: 'credits', component: CreditsComponent},
-  {path: '', redirectTo: '/credits', pathMatch: 'full'},
-  {path: 'banks', component: BanksComponent}
+    {path: '', redirectTo: '/users', pathMatch: 'full'},
+    {path: 'banks', component: BanksComponent},
+    {path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule)},
+    { path: 'banks', loadChildren: () => import('./banks/banks.module').then(m => m.BanksModule) },
+    { path: 'credits', loadChildren: () => import('./credits/credits.module').then(m => m.CreditsModule) }
 ];
 
 @NgModule({

@@ -1,17 +1,14 @@
-.page {
-  background: #f1f1f1;
-  height: 90%;
+.table-container {
+  position: relative;
+  padding: 20px;
 }
 
-table {
-  width: 100%;
-  background: #f1f1f1;
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
-table th {
-  font-size: 20px;
-}
-
-table td {
-  font-size: 15px;
+.clickable-row {
+  cursor: pointer;
 }
